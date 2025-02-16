@@ -1,0 +1,39 @@
+
+[
+    {
+      "Id": 1,
+      "Name": "Aradhana Villa",
+      "Type": "House",
+      "Price": 120000
+    },
+    {
+      "Id": 2,
+      "Name": "Moorthy Villa",
+      "Type": "House",
+      "Price": 220000
+    },
+    {
+      "Id": 3,
+      "Name": "Yamuna House",
+      "Type": "House",
+      "Price": 240000
+    },
+    {
+      "Id": 4,
+      "Name": "Shanthi Villa",
+      "Type": "House",
+      "Price": 190000
+    },
+    {
+      "Id": 5,
+      "Name": "Muthu Villa",
+      "Type": "House",
+      "Price": 180000
+    },
+    {
+      "Id": 6,
+      "Name": "Ganga Villa",
+      "Type": "House",
+      "Price": 210000
+    }
+  ]
