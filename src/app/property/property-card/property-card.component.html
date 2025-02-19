@@ -1,6 +1,7 @@
 <div class="radii card">
     <div class="card-img-wrapper">
-        <img class="radii card-img-top" src="assets/images/house_1.jpg">
+        <img *ngIf="property.Image" class="radii card-img-top" src="assets/images/{{property.Image}}.jpg">
+        <img *ngIf="!property.Image" class="radii card-img-top" src="assets/images/house_1.jpg">
         <ul class="list-inline text-center member-icons animate">
             <li class="list-inline-item">
                 <button class="btn btn-primary" routerLink="/property-detail/{{property.Id}}">

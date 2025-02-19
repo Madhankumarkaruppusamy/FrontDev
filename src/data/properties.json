@@ -2,36 +2,47 @@
 [
     {
       "Id": 1,
+      "SellRent":1,
       "Name": "Aradhana Villa",
       "Type": "House",
-      "Price": 120000
+      "Price": 120000,
+      "Image": "house_6"
     },
     {
       "Id": 2,
-      "Name": "Moorthy Villa",
+      "SellRent":1,
+      "Name": "Moorthy House",
       "Type": "House",
-      "Price": 220000
+      "Price": 220000,
+      "Image": "house_2"
     },
     {
       "Id": 3,
+      "SellRent":1,
       "Name": "Yamuna House",
       "Type": "House",
-      "Price": 240000
+      "Price": 240000,
+      "Image": "house_3"
     },
     {
       "Id": 4,
-      "Name": "Shanthi Villa",
+      "SellRent":2,
+      "Name": "Yaal Apartment",
       "Type": "House",
-      "Price": 190000
+      "Price": 190000,
+      "Image": "house_4"
     },
     {
       "Id": 5,
-      "Name": "Muthu Villa",
+      "SellRent":1,
+      "Name": "Muthu House",
       "Type": "House",
-      "Price": 180000
+      "Price": 180000,
+      "Image": "house_5"
     },
     {
       "Id": 6,
+      "SellRent":2,
       "Name": "Ganga Villa",
       "Type": "House",
       "Price": 210000
