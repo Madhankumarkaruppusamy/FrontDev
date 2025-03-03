@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class UserLoginComponent {
 
+  constructor(){
+
+  }
+
+  onLogin(loginForm:any){
+    console.log(loginForm);
+  }
 }

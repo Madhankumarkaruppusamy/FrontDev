@@ -9,7 +9,7 @@
                 <input type="text" class="form-control" #propName="ngModel" id="Name" ngModel name="Name" required minlength="5">
             </div>
             <span class="error-message" *ngIf="propName.touched && propName.invalid">
-                <span *ngIf="propName.errors?.['required']"> Please Enter Your Name</span>
+                <span *ngIf="propName.errors?.['required']"> Please Enter Your Property Name</span>
                 <span *ngIf="propName.errors?.['minlength']"> Name Should Contain Atleast 5 Characters</span>
             </span><br>
 
@@ -27,7 +27,7 @@
             </div>
 
             <div class="mt-2">
-                <button type="submit"   class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary">Save</button>
                 <button type="reset" class="btn btn-primary m-lg-1">Cancel</button>
             </div>
         </form>

@@ -1,5 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, Form, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  Form,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
+import { User } from 'src/app/model/user';
+import { AlertifyService } from 'src/app/services/alertify.service';
+import { UserServiceService } from 'src/app/services/user-service.service';
+
 
 @Component({
   selector: 'app-user-register',
@@ -8,49 +20,87 @@ import { AbstractControl, Form, FormControl, FormGroup, ValidatorFn, Validators 
 })
 export class UserRegisterComponent implements OnInit {
   registrationForm!: FormGroup;
-  constructor() {}
+  user: User = {
+    userName: '',
+    email: '',
+    password: '',
+    mobile: 0,
+  };
+  isSubmitted: boolean = false;
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserServiceService,
+    private alertify: AlertifyService,
+  ) {}
   ngOnInit() {
-    this.registrationForm = new FormGroup({
-      userName: new FormControl(null,[Validators.required]),
-      email: new FormControl(null,[Validators.required, Validators.email]),
-      password: new FormControl(null,[Validators.required, Validators.minLength(8)]),
-      confirmPassword: new FormControl(null,[Validators.required]),
-      mobile: new FormControl(null,[Validators.required,Validators.maxLength(10)])
+    this.createRegisterationForm();
+  }
 
-    }, { validators: this.passwordMatchingValidator } );
+  createRegisterationForm() {
+    this.registrationForm = this.fb.group(
+      {
+        userName: [null, [Validators.required]],
+        email: [null, [Validators.required, Validators.email]],
+        password: [null, [Validators.required, Validators.minLength(8)]],
+        confirmPassword: [null, [Validators.required]],
+        mobile: [
+          null,
+          [
+            Validators.required,
+            Validators.maxLength(10),
+            Validators.minLength(10),
+          ],
+        ],
+      },
+      { validators: this.passwordMatchingValidator }
+    );
   }
   passwordMatchingValidator: ValidatorFn = (fg: AbstractControl) => {
     const password = fg.get('password')?.value;
     const confirmPassword = fg.get('confirmPassword')?.value;
-
     return password === confirmPassword ? null : { notMatched: true };
   };
 
-  get userName(){
-    return this.registrationForm.get('userName') as FormControl
+  onSubmit() {
+    this.isSubmitted = true;
+
+    if (this.registrationForm.valid) {
+      console.log(this.registrationForm.value);
+      this.user = Object.assign(this.user, this.registrationForm.value);
+      this.userService.addUser(this.user);
+      this.registrationForm.reset();
+      this.isSubmitted = false;
+      this.alertify.success('Registration Form Successfully Saved!');
+    } else {
+      this.alertify.error('Kindly fill All Required Fields');
+    }
   }
 
-  get email(){
-    return this.registrationForm.get('email') as FormControl
+  userData(): User {
+    return (this.user = {
+      userName: this.userName.value,
+      email: this.email.value,
+      password: this.password.value,
+      mobile: this.mobile.value,
+    });
   }
 
-  get password(){
-    return this.registrationForm.get('password') as FormControl
+  get userName() {
+    return this.registrationForm.get('userName') as FormControl;
   }
 
-  get confirmPassword(){
-    return this.registrationForm.get('confirmPassword') as FormControl
-  }
-  get mobile(){
-    return this.registrationForm.get('mobile') as FormControl
+  get email() {
+    return this.registrationForm.get('email') as FormControl;
   }
 
-
-
-
-  onSubmit(){
-
-    console.log(this.registrationForm)
+  get password() {
+    return this.registrationForm.get('password') as FormControl;
   }
 
+  get confirmPassword() {
+    return this.registrationForm.get('confirmPassword') as FormControl;
+  }
+  get mobile() {
+    return this.registrationForm.get('mobile') as FormControl;
+  }
 }
